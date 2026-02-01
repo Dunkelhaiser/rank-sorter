@@ -53,7 +53,9 @@ function RootComponent() {
             <body>
                 <HeadContent />
                 <Suspense>
-                    <Outlet />
+                    <main class="p-6 sm:pt-8 md:px-14 md:py-10 lg:py-12 xl:px-32">
+                        <Outlet />
+                    </main>
                 </Suspense>
                 <Scripts />
             </body>
