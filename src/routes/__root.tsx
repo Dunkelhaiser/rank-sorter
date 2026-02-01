@@ -1,6 +1,7 @@
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/solid-router";
 import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
+import Header from "~/components/Header/Header";
 import styleCss from "~/styles.css?url";
 
 export const Route = createRootRouteWithContext()({
@@ -53,6 +54,7 @@ function RootComponent() {
             <body class="bg-background">
                 <HeadContent />
                 <Suspense>
+                    <Header />
                     <main class="p-6 sm:pt-8 md:px-14 md:py-10 lg:py-12 xl:px-32">
                         <Outlet />
                     </main>
