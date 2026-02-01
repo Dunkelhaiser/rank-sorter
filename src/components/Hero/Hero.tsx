@@ -1,5 +1,6 @@
-import { Globe, Plus } from "lucide-solid";
+import { ArrowUpWideNarrow, Globe, Plus, Sparkles, TrendingUp, Users } from "lucide-solid";
 import { Button } from "~/ui/Button";
+import Stat from "./Stat";
 
 const Hero = () => {
     return (
@@ -21,6 +22,13 @@ const Hero = () => {
                 <Button size="lg" variant="outline">
                     Explore <Globe />
                 </Button>
+            </div>
+
+            <div class="mt-12 flex flex-wrap items-center justify-center gap-8">
+                <Stat icon={Users} value="50K+" label="Active Rankers" />
+                <Stat icon={ArrowUpWideNarrow} value="10K+" label="Sorters Created" />
+                <Stat icon={TrendingUp} value="100K+" label="Rankings Created" />
+                <Stat icon={Sparkles} value="10M+" label="Comparisons Made" />
             </div>
         </section>
     );
