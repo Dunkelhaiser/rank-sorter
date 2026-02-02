@@ -68,13 +68,14 @@ const Header = () => {
                             </span>
                         </li>
                         <li>
-                            <span
+                            <Link
+                                to="/sign_in"
                                 class={cn(
                                     "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
                                 )}
                             >
                                 <LogIn class="size-4" /> Sign In
-                            </span>
+                            </Link>
                         </li>
                     </ul>
                 </nav>
