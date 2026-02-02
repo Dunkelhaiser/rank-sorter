@@ -11,8 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as authRouteRouteImport } from './routes/(auth)/route'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as authSign_upRouteImport } from './routes/(auth)/sign_up'
-import { Route as authSign_inRouteImport } from './routes/(auth)/sign_in'
+import { Route as authSign_upIndexRouteImport } from './routes/(auth)/sign_up/index'
+import { Route as authSign_inIndexRouteImport } from './routes/(auth)/sign_in/index'
 import { Route as ApiAuthSplatRouteImport } from './routes/api/auth/$'
 
 const authRouteRoute = authRouteRouteImport.update({
@@ -24,14 +24,14 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authSign_upRoute = authSign_upRouteImport.update({
-  id: '/sign_up',
-  path: '/sign_up',
+const authSign_upIndexRoute = authSign_upIndexRouteImport.update({
+  id: '/sign_up/',
+  path: '/sign_up/',
   getParentRoute: () => authRouteRoute,
 } as any)
-const authSign_inRoute = authSign_inRouteImport.update({
-  id: '/sign_in',
-  path: '/sign_in',
+const authSign_inIndexRoute = authSign_inIndexRouteImport.update({
+  id: '/sign_in/',
+  path: '/sign_in/',
   getParentRoute: () => authRouteRoute,
 } as any)
 const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
@@ -42,36 +42,36 @@ const ApiAuthSplatRoute = ApiAuthSplatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/sign_in': typeof authSign_inRoute
-  '/sign_up': typeof authSign_upRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/sign_in/': typeof authSign_inIndexRoute
+  '/sign_up/': typeof authSign_upIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/sign_in': typeof authSign_inRoute
-  '/sign_up': typeof authSign_upRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/sign_in': typeof authSign_inIndexRoute
+  '/sign_up': typeof authSign_upIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/(auth)': typeof authRouteRouteWithChildren
-  '/(auth)/sign_in': typeof authSign_inRoute
-  '/(auth)/sign_up': typeof authSign_upRoute
   '/api/auth/$': typeof ApiAuthSplatRoute
+  '/(auth)/sign_in/': typeof authSign_inIndexRoute
+  '/(auth)/sign_up/': typeof authSign_upIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sign_in' | '/sign_up' | '/api/auth/$'
+  fullPaths: '/' | '/api/auth/$' | '/sign_in/' | '/sign_up/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sign_in' | '/sign_up' | '/api/auth/$'
+  to: '/' | '/api/auth/$' | '/sign_in' | '/sign_up'
   id:
     | '__root__'
     | '/'
     | '/(auth)'
-    | '/(auth)/sign_in'
-    | '/(auth)/sign_up'
     | '/api/auth/$'
+    | '/(auth)/sign_in/'
+    | '/(auth)/sign_up/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -96,18 +96,18 @@ declare module '@tanstack/solid-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)/sign_up': {
-      id: '/(auth)/sign_up'
+    '/(auth)/sign_up/': {
+      id: '/(auth)/sign_up/'
       path: '/sign_up'
-      fullPath: '/sign_up'
-      preLoaderRoute: typeof authSign_upRouteImport
+      fullPath: '/sign_up/'
+      preLoaderRoute: typeof authSign_upIndexRouteImport
       parentRoute: typeof authRouteRoute
     }
-    '/(auth)/sign_in': {
-      id: '/(auth)/sign_in'
+    '/(auth)/sign_in/': {
+      id: '/(auth)/sign_in/'
       path: '/sign_in'
-      fullPath: '/sign_in'
-      preLoaderRoute: typeof authSign_inRouteImport
+      fullPath: '/sign_in/'
+      preLoaderRoute: typeof authSign_inIndexRouteImport
       parentRoute: typeof authRouteRoute
     }
     '/api/auth/$': {
@@ -121,13 +121,13 @@ declare module '@tanstack/solid-router' {
 }
 
 interface authRouteRouteChildren {
-  authSign_inRoute: typeof authSign_inRoute
-  authSign_upRoute: typeof authSign_upRoute
+  authSign_inIndexRoute: typeof authSign_inIndexRoute
+  authSign_upIndexRoute: typeof authSign_upIndexRoute
 }
 
 const authRouteRouteChildren: authRouteRouteChildren = {
-  authSign_inRoute: authSign_inRoute,
-  authSign_upRoute: authSign_upRoute,
+  authSign_inIndexRoute: authSign_inIndexRoute,
+  authSign_upIndexRoute: authSign_upIndexRoute,
 }
 
 const authRouteRouteWithChildren = authRouteRoute._addFileChildren(

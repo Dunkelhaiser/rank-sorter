@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/solid-router";
 import { CardContent, CardHeader, CardTitle } from "~/ui/Card";
 
-export const Route = createFileRoute("/(auth)/sign_up")({
+export const Route = createFileRoute("/(auth)/sign_up/")({
     component: RouteComponent,
 });
 
