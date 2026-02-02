@@ -93,7 +93,13 @@
                         "noImplicitBoolean": "off",
                         "useComponentExportOnlyModules": "off",
                         "useExportsLast": "off",
-                        "useBlockStatements": "off"
+                        "useBlockStatements": "off",
+                        "useNamingConvention": {
+                            "level": "error",
+                            "options": {
+                                "strictCase": false
+                            }
+                        }
                     },
                     "a11y": {
                         "noSvgWithoutTitle": "off",
