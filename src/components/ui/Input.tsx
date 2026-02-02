@@ -19,25 +19,28 @@ type InputRootProps<T extends ValidComponent = "div"> = TextFieldRootProps<T> & 
 export const InputRoot = <T extends ValidComponent = "div">(props: PolymorphicProps<T, InputRootProps<T>>) => {
     const [local, rest] = splitProps(props as InputRootProps, ["class"]);
 
-    return <TextFieldPrimitive class={cn("space-y-1", local.class)} {...rest} />;
+    return <TextFieldPrimitive class={cn("space-y-1.5", local.class)} {...rest} />;
 };
 
-export const inputLabel = cva("text-sm data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70 font-medium", {
-    variants: {
-        label: {
-            true: "data-[invalid]:text-destructive",
+export const inputLabel = cva(
+    "text-sm data-[disabled]:cursor-not-allowed data-[disabled]:opacity-70 font-medium inline-block",
+    {
+        variants: {
+            label: {
+                true: "data-[invalid]:text-destructive",
+            },
+            error: {
+                true: "text-destructive text-xs",
+            },
+            description: {
+                true: "font-normal text-muted-foreground",
+            },
         },
-        error: {
-            true: "text-destructive text-xs",
+        defaultVariants: {
+            label: true,
         },
-        description: {
-            true: "font-normal text-muted-foreground",
-        },
-    },
-    defaultVariants: {
-        label: true,
-    },
-});
+    }
+);
 
 type InputLabelProps<T extends ValidComponent = "label"> = TextFieldLabelProps<T> & {
     class?: string;
