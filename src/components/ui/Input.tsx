@@ -27,7 +27,7 @@ export const inputLabel = cva(
     {
         variants: {
             label: {
-                true: "data-[invalid]:text-destructive",
+                true: "",
             },
             error: {
                 true: "text-destructive text-xs",
@@ -93,7 +93,7 @@ export const Input = <T extends ValidComponent = "input">(props: PolymorphicProp
     return (
         <TextFieldPrimitive.Input
             class={cn(
-                "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-shadow file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs transition-shadow file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-[1.5px] focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[invalid]:border-destructive",
                 local.class
             )}
             {...rest}
