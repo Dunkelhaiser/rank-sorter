@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/solid-router";
-import { Globe, House, Menu, Plus, X } from "lucide-solid";
+import { Globe, House, LogIn, Menu, Plus, X } from "lucide-solid";
 import { createSignal, Show } from "solid-js";
 import { cn } from "~/lib/utils";
 
@@ -65,6 +65,15 @@ const Header = () => {
                                 )}
                             >
                                 <Plus class="size-4" /> Create
+                            </span>
+                        </li>
+                        <li>
+                            <span
+                                class={cn(
+                                    "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
+                                )}
+                            >
+                                <LogIn class="size-4" /> Sign In
                             </span>
                         </li>
                     </ul>
