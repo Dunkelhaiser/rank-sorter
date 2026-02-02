@@ -3,6 +3,7 @@ import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
 import Header from "~/components/Header/Header";
 import styleCss from "~/styles.css?url";
+import { Toaster } from "~/ui/Toaster";
 
 export const Route = createRootRouteWithContext()({
     head: () => ({
@@ -56,6 +57,7 @@ function RootComponent() {
                 <Suspense>
                     <Header />
                     <main class="p-6 sm:pt-8 md:px-14 md:py-10 lg:py-12 xl:px-32">
+                        <Toaster />
                         <Outlet />
                     </main>
                 </Suspense>
