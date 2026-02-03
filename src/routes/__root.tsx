@@ -2,7 +2,7 @@ import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanst
 import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
 import Header from "~/components/Header/Header";
-import { getServerSession } from "~/lib/getServerSession";
+import { getServerSession } from "~/lib/auth/getServerSession";
 import styleCss from "~/styles.css?url";
 import { Toaster } from "~/ui/Toaster";
 

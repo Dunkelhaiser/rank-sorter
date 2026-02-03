@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/solid-router";
 import { Globe, House, LogIn, Menu, Plus, X } from "lucide-solid";
 import { createSignal, Show } from "solid-js";
-import type { Session } from "~/lib/authClient";
+import type { Session } from "~/lib/auth/authClient";
 import { cn } from "~/lib/utils";
 import { buttonVariants } from "~/ui/Button";
 import SignOutBtn from "./SignOutBtn";

@@ -2,7 +2,7 @@ import { createForm } from "@tanstack/solid-form";
 import { useNavigate } from "@tanstack/solid-router";
 import { toast } from "solid-sonner";
 import { Input, InputErrorMessage, InputLabel, InputRoot } from "~/components/ui/Input";
-import { authClient } from "~/lib/authClient";
+import { authClient } from "~/lib/auth/authClient";
 import { Button } from "~/ui/Button";
 import { signUpSchema } from "./-signUpSchema";
 

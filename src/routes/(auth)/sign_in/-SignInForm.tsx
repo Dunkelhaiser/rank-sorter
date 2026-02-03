@@ -2,7 +2,7 @@ import { createForm } from "@tanstack/solid-form";
 import { toast } from "solid-sonner";
 import { Button } from "~/components/ui/Button";
 import { Input, InputErrorMessage, InputLabel, InputRoot } from "~/components/ui/Input";
-import { authClient } from "~/lib/authClient";
+import { authClient } from "~/lib/auth/authClient";
 import { signInSchema } from "./-signInSchema";
 
 const SignInForm = () => {
