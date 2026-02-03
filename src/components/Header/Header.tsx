@@ -1,9 +1,17 @@
 import { Link } from "@tanstack/solid-router";
 import { Globe, House, LogIn, Menu, Plus, X } from "lucide-solid";
 import { createSignal, Show } from "solid-js";
+import type { Session } from "~/lib/authClient";
 import { cn } from "~/lib/utils";
+import { buttonVariants } from "~/ui/Button";
+import SignOutBtn from "./SignOutBtn";
 
-const Header = () => {
+interface Props {
+    session: Session | null;
+}
+
+const Header = (props: Props) => {
+    const session = () => props.session;
     const [isMenuOpen, setIsMenuOpen] = createSignal(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen());
@@ -40,43 +48,37 @@ const Header = () => {
                         <li>
                             <Link
                                 to="/"
-                                class={cn(
-                                    "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
-                                )}
+                                class={buttonVariants({ variant: "link" })}
                                 onClick={() => setIsMenuOpen(false)}
                             >
-                                <House class="size-4" /> Home
+                                <House /> Home
                             </Link>
                         </li>
                         <li>
-                            <span
-                                class={cn(
-                                    "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
-                                )}
-                            >
-                                <Globe class="size-4" />
+                            <span class={buttonVariants({ variant: "link" })}>
+                                <Globe />
                                 Explore
                             </span>
                         </li>
                         <li>
-                            <span
-                                class={cn(
-                                    "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
-                                )}
-                            >
-                                <Plus class="size-4" /> Create
+                            <span class={buttonVariants({ variant: "link" })}>
+                                <Plus /> Create
                             </span>
                         </li>
-                        <li>
-                            <Link
-                                to="/sign_in"
-                                class={cn(
-                                    "flex items-center gap-1 text-muted-foreground hover:text-foreground font-medium transition-colors [&.active]:text-foreground"
-                                )}
-                            >
-                                <LogIn class="size-4" /> Sign In
-                            </Link>
-                        </li>
+                        <Show
+                            when={session()?.session != null}
+                            fallback={
+                                <li>
+                                    <Link to="/sign_in" class={buttonVariants({ variant: "link" })}>
+                                        <LogIn /> Sign In
+                                    </Link>
+                                </li>
+                            }
+                        >
+                            <li>
+                                <SignOutBtn />
+                            </li>
+                        </Show>
                     </ul>
                 </nav>
             </div>

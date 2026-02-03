@@ -2,6 +2,7 @@ import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanst
 import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
 import Header from "~/components/Header/Header";
+import { getServerSession } from "~/lib/getServerSession";
 import styleCss from "~/styles.css?url";
 import { Toaster } from "~/ui/Toaster";
 
@@ -42,9 +43,15 @@ export const Route = createRootRouteWithContext()({
         ],
     }),
     shellComponent: RootComponent,
+    loader: async () => {
+        const session = await getServerSession();
+        return session;
+    },
 });
 
 function RootComponent() {
+    const session = Route.useLoaderData();
+
     return (
         // biome-ignore lint/a11y/useHtmlLang: TanStack Start takes care of this
         <html>
@@ -55,7 +62,7 @@ function RootComponent() {
             <body class="bg-background">
                 <HeadContent />
                 <Suspense>
-                    <Header />
+                    <Header session={session().session} />
                     <main class="p-6 sm:pt-8 md:px-14 md:py-10 lg:py-12 xl:px-32">
                         <Toaster />
                         <Outlet />
