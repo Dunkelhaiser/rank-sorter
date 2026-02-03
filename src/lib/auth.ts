@@ -2,6 +2,7 @@ import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { tanstackStartCookies } from "better-auth/tanstack-start/solid";
 import { db } from "~/db/db";
+import { passwordMaxLength, passwordMinLength } from "~/routes/(auth)/sign_up/-signUpSchema";
 import { env } from "./env";
 
 export const auth = betterAuth({
@@ -13,5 +14,7 @@ export const auth = betterAuth({
     emailAndPassword: {
         enabled: true,
         autoSignIn: false,
+        minPasswordLength: passwordMinLength,
+        maxPasswordLength: passwordMaxLength,
     },
 });

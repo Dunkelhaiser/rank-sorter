@@ -1,8 +1,8 @@
 import { z as zod } from "zod";
 import { emailField, passwordField } from "../-sharedSchema";
 
-const passwordMinLength = 5;
-const passwordMaxLength = 256;
+export const passwordMinLength = 5;
+export const passwordMaxLength = 256;
 const nameMinLength = 3;
 const nameMaxLength = 48;
 
