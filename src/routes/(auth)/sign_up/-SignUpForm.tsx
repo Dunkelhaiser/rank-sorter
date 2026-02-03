@@ -30,7 +30,7 @@ const SignUpForm = () => {
                 return;
             }
 
-            toast.success("Sign up successfully. Check your email to confirm your account.");
+            toast.success("Signed up successfully. Check your email to confirm your account.");
             navigate({ to: "/sign_in" });
         },
         validators: {

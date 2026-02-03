@@ -21,7 +21,10 @@ const SignInForm = () => {
 
             if (error) {
                 toast.error(`Failed to sign in. ${error.message}.`);
+                return;
             }
+
+            toast.success("Signed in successfully");
         },
         validators: {
             onSubmit: signInSchema,
