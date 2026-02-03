@@ -1,8 +1,16 @@
-import { createFileRoute, Outlet } from "@tanstack/solid-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/solid-router";
+import { getServerSession } from "~/lib/auth/getServerSession";
 import { Card } from "~/ui/Card";
 
 export const Route = createFileRoute("/(auth)")({
     component: RouteComponent,
+    beforeLoad: async () => {
+        const session = await getServerSession();
+
+        if (session.session) {
+            throw redirect({ to: "/" });
+        }
+    },
 });
 
 function RouteComponent() {
