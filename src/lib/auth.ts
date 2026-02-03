@@ -12,5 +12,6 @@ export const auth = betterAuth({
     plugins: [tanstackStartCookies()],
     emailAndPassword: {
         enabled: true,
+        autoSignIn: false,
     },
 });
