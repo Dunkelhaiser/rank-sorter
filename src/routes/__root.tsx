@@ -50,8 +50,6 @@ export const Route = createRootRouteWithContext()({
 });
 
 function RootComponent() {
-    const session = Route.useLoaderData();
-
     return (
         // biome-ignore lint/a11y/useHtmlLang: TanStack Start takes care of this
         <html>
@@ -62,7 +60,7 @@ function RootComponent() {
             <body class="bg-background">
                 <HeadContent />
                 <Suspense>
-                    <Header session={session()} />
+                    <Header />
                     <main class="p-6 sm:pt-8 md:px-14 md:py-10 lg:py-12 xl:px-32">
                         <Toaster />
                         <Outlet />

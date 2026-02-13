@@ -1,17 +1,12 @@
-import { Link } from "@tanstack/solid-router";
+import { Link, useLoaderData } from "@tanstack/solid-router";
 import { Globe, House, LogIn, Menu, Plus, X } from "lucide-solid";
 import { createSignal, Show } from "solid-js";
-import type { Session } from "~/lib/auth/authClient";
 import { cn } from "~/lib/utils";
 import { buttonVariants } from "~/ui/Button";
 import SignOutBtn from "./SignOutBtn";
 
-interface Props {
-    session: Session | null;
-}
-
-const Header = (props: Props) => {
-    const session = () => props.session;
+const Header = () => {
+    const session = useLoaderData({ from: "__root__" });
     const [isMenuOpen, setIsMenuOpen] = createSignal(false);
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen());
