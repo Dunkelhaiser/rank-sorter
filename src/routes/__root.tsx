@@ -5,6 +5,7 @@ import Header from "~/components/Header/Header";
 import { getSession } from "~/lib/auth/getSession";
 import styleCss from "~/styles.css?url";
 import { Toaster } from "~/ui/Toaster";
+import { NotFound } from "./-NotFound";
 
 export const Route = createRootRouteWithContext()({
     head: () => ({
@@ -47,6 +48,7 @@ export const Route = createRootRouteWithContext()({
         const session = await getSession();
         return session;
     },
+    notFoundComponent: NotFound,
 });
 
 function RootComponent() {
