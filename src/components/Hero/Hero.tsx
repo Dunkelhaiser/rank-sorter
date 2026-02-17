@@ -16,7 +16,7 @@ const Hero = () => {
             </p>
 
             <div class="mt-8 flex justify-center gap-3">
-                <Button size="lg" variant="default">
+                <Button size="lg" variant="primary">
                     Create <Plus />
                 </Button>
                 <Button size="lg" variant="outline">
