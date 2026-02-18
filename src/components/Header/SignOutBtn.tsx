@@ -12,9 +12,14 @@ const SignOutBtn = () => {
     };
 
     return (
-        <Button variant="link" onClick={handleSignOut}>
+        <Button
+            variant="ghost"
+            onClick={handleSignOut}
+            class="px-2 py-1.5 !h-auto text-sm gap-1 font-normal focus-visible:ring-0 focus-visible:ring-offset-0 focus:bg-accent focus:text-accent-foreground"
+        >
             <LogOut /> Sign Out
         </Button>
     );
 };
-export default SignOutBtn;
+
+export { SignOutBtn };
