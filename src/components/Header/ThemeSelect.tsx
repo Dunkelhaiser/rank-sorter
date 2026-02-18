@@ -41,7 +41,7 @@ const ThemeSelect = () => {
             placeholder="Select a theme"
             itemComponent={(props) => <SelectItem item={props.item}>{props.item.rawValue.label}</SelectItem>}
         >
-            <SelectTrigger aria-label="Theme" class="w-[180px]">
+            <SelectTrigger aria-label="Theme" class="!h-8">
                 <SelectValue<Options>>{(state) => state.selectedOption().label}</SelectValue>
             </SelectTrigger>
             <SelectContent />
