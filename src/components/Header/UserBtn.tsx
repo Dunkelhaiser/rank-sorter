@@ -25,6 +25,11 @@ const UserBtn = (props: Props) => {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
+                <div class="py-1 px-2">
+                    <p class="text-sm font-bold">{props.user.name}</p>
+                    <p class="text-xs text-muted-foreground">{props.user.email}</p>
+                </div>
+                <DropdownMenuSeparator />
                 <DropdownMenuItem>
                     <span class="flex items-center gap-1">
                         <UserRound class="size-4" /> Profile
