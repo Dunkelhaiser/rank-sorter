@@ -9,6 +9,7 @@ import {
     DropdownMenuTrigger,
 } from "~/ui/DropdownMenu";
 import { SignOutBtn } from "./SignOutBtn";
+import { ThemeSelect } from "./ThemeSelect";
 
 interface Props {
     user: User;
@@ -34,8 +35,8 @@ const UserBtn = (props: Props) => {
                         <Settings class="size-4" /> Settings
                     </span>
                 </DropdownMenuItem>
-                {/* <DropdownMenuSeparator /> */}
-                {/* <ThemeSwitch /> */}
+                <DropdownMenuSeparator />
+                <ThemeSelect />
                 <DropdownMenuSeparator />
                 <DropdownMenuItem as={() => <SignOutBtn />} />
             </DropdownMenuContent>

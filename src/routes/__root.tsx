@@ -3,6 +3,7 @@ import { Suspense } from "solid-js";
 import { HydrationScript } from "solid-js/web";
 import Header from "~/components/Header/Header";
 import { getSession } from "~/lib/auth/getSession";
+import { getTheme } from "~/lib/theme";
 import styleCss from "~/styles.css?url";
 import { Toaster } from "~/ui/Toaster";
 import { NotFound } from "./-NotFound";
@@ -44,6 +45,7 @@ export const Route = createRootRouteWithContext()({
         ],
     }),
     shellComponent: RootComponent,
+    beforeLoad: async () => ({ theme: await getTheme() }),
     loader: async () => {
         const session = await getSession();
         return session;
@@ -52,9 +54,11 @@ export const Route = createRootRouteWithContext()({
 });
 
 function RootComponent() {
+    const context = Route.useRouteContext();
+
     return (
         // biome-ignore lint/a11y/useHtmlLang: TanStack Start takes care of this
-        <html>
+        <html class={context().theme}>
             {/** biome-ignore lint/style/noHeadElement: TanStack Start takes care of this */}
             <head>
                 <HydrationScript />
