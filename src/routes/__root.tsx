@@ -1,6 +1,6 @@
 import { createRootRouteWithContext, HeadContent, Outlet, Scripts } from "@tanstack/solid-router";
-import { Suspense } from "solid-js";
-import { HydrationScript } from "solid-js/web";
+import { createEffect, createSignal, Suspense } from "solid-js";
+import { HydrationScript, isServer } from "solid-js/web";
 import Header from "~/components/Header/Header";
 import { getSession } from "~/lib/auth/getSession";
 import { getTheme } from "~/lib/theme";
@@ -55,13 +55,44 @@ export const Route = createRootRouteWithContext()({
 
 function RootComponent() {
     const context = Route.useRouteContext();
+    const [resolvedTheme, setResolvedTheme] = createSignal(context().theme);
+
+    createEffect(() => {
+        if (isServer) return;
+
+        const theme = context().theme;
+
+        if (theme === "system") {
+            const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            setResolvedTheme(isDark ? "dark" : "light");
+
+            const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+            const handler = (e: MediaQueryListEvent) => {
+                setResolvedTheme(e.matches ? "dark" : "light");
+            };
+            mediaQuery.addEventListener("change", handler);
+            return () => mediaQuery.removeEventListener("change", handler);
+        }
+
+        setResolvedTheme(theme);
+        return undefined;
+    });
 
     return (
         // biome-ignore lint/a11y/useHtmlLang: TanStack Start takes care of this
-        <html class={context().theme}>
+        <html class={resolvedTheme()}>
             {/** biome-ignore lint/style/noHeadElement: TanStack Start takes care of this */}
             <head>
                 <HydrationScript />
+                <script>
+                    {`(function() {
+                        const theme = document.documentElement.className;
+                        if (theme === 'system') {
+                            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                            document.documentElement.className = isDark ? 'dark' : 'light';
+                        }
+                    })()`}
+                </script>
             </head>
             <body class="bg-background">
                 <HeadContent />
